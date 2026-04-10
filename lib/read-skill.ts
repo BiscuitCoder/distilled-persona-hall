@@ -7,5 +7,10 @@ export async function readSkillContent(slug: string): Promise<string> {
   if (!persona) throw new Error(`Persona not found: ${slug}`)
 
   const skillPath = path.join(process.cwd(), 'personage', persona.dir, 'SKILL.md')
-  return fs.readFile(skillPath, 'utf-8')
+  try {
+    return await fs.readFile(skillPath, 'utf-8')
+  } catch (e) {
+    console.error(`[read-skill] Failed to read ${skillPath}:`, e)
+    throw new Error(`Skill file missing for: ${slug}`)
+  }
 }

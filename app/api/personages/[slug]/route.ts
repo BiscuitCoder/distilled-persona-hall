@@ -9,7 +9,13 @@ export async function GET(
   try {
     const skill = await readSkillContent(slug)
     return NextResponse.json({ skill })
-  } catch {
-    return NextResponse.json({ error: 'Persona not found' }, { status: 404 })
+  } catch (e) {
+    const message = e instanceof Error ? e.message : 'Unknown error'
+    const isNotFound = message.includes('not found') || message.includes('missing')
+    console.error(`[api/personages/${slug}]`, message)
+    return NextResponse.json(
+      { error: isNotFound ? 'Persona not found' : 'Internal server error' },
+      { status: isNotFound ? 404 : 500 }
+    )
   }
 }
