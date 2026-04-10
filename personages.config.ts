@@ -6,7 +6,7 @@ export const personagesConfig: PersonageConfig[] = [
     dir: 'paul-graham-skill',
     name: 'Paul Graham',
     description: 'YC 创始人，创业与写作思想家',
-    avatar: '/avatars/paul-graham.jpg',
+    avatar: '/avatars/paul-graham.png',
     tags: ['创业', '写作', '投资人', '美国', '科技'],
   },
   {
@@ -14,7 +14,7 @@ export const personagesConfig: PersonageConfig[] = [
     dir: 'steve-jobs-skill',
     name: 'Steve Jobs',
     description: '苹果创始人，产品与设计哲学家',
-    avatar: '/avatars/steve-jobs.jpg',
+    avatar: '/avatars/steve-jobs.png',
     tags: ['产品', '设计', '科技', '美国'],
   },
   {
@@ -22,7 +22,15 @@ export const personagesConfig: PersonageConfig[] = [
     dir: 'trump-skill',
     name: 'Donald Trump',
     description: '美国前总统，谈判与品牌大师',
-    avatar: '/avatars/trump.jpg',
+    avatar: '/avatars/trump.png',
     tags: ['政治', '美国', '商业', '谈判'],
+  },
+  {
+    slug: 'zhangxuefeng',
+    dir: 'zhangxuefeng-skill',
+    name: '张雪峰',
+    description: '升学与考研规划导师，职业规划与阶层流动观察者',
+    avatar: '/avatars/zhangxuefeng.png',
+    tags: ['教育', '考研', '职业规划', '中国'],
   },
 ]
