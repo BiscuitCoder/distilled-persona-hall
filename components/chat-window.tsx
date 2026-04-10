@@ -6,10 +6,12 @@ import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { useSettings } from '@/hooks/use-settings'
+import { ApiKeyConfigHint } from '@/components/api-key-config-hint'
 import { ChatMessageBubble } from '@/components/chat-message-bubble'
 import { MemorialPersonageAvatar } from '@/components/memorial-personage-avatar'
 import { MarkdownMessage } from '@/components/markdown-message'
 import { consumeSSEStream } from '@/lib/read-sse'
+import { isLikelyApiCredentialsError } from '@/lib/api-credentials-error'
 import type { Message, PersonageConfig } from '@/types'
 
 interface ChatWindowProps {
@@ -20,6 +22,7 @@ export function ChatWindow({ persona }: ChatWindowProps) {
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
   const [streaming, setStreaming] = useState(false)
+  const [showApiConfigHint, setShowApiConfigHint] = useState(false)
   const { settings, loaded } = useSettings()
   const bottomRef = useRef<HTMLDivElement>(null)
 
@@ -63,6 +66,7 @@ export function ChatWindow({ persona }: ChatWindowProps) {
             /* keep statusText */
           }
         }
+        setShowApiConfigHint(isLikelyApiCredentialsError(errMsg, res.status))
         setMessages([...next, { role: 'assistant', content: `错误：${errMsg}` }])
         return
       }
@@ -74,7 +78,10 @@ export function ChatWindow({ persona }: ChatWindowProps) {
       })
 
       if (!result.ok) {
+        setShowApiConfigHint(isLikelyApiCredentialsError(result.error))
         setMessages([...next, { role: 'assistant', content: `错误：${result.error}` }])
+      } else {
+        setShowApiConfigHint(false)
       }
     } finally {
       setStreaming(false)
@@ -125,7 +132,9 @@ export function ChatWindow({ persona }: ChatWindowProps) {
           <div ref={bottomRef} />
         </div>
       </ScrollArea>
-      <div className="mx-auto flex w-full max-w-3xl shrink-0 gap-2 bg-background/95 p-4 backdrop-blur-sm">
+      <div className="mx-auto flex w-full max-w-3xl shrink-0 flex-col gap-2 bg-background/95 p-4 pt-3 backdrop-blur-sm">
+        <ApiKeyConfigHint show={showApiConfigHint} />
+        <div className="flex gap-2">
         <Textarea
           placeholder={loaded ? `对 ${persona.name} 说点什么…` : '…'}
           value={input}
@@ -149,6 +158,7 @@ export function ChatWindow({ persona }: ChatWindowProps) {
         >
           <Send className="h-4 w-4" />
         </Button>
+        </div>
       </div>
     </div>
   )

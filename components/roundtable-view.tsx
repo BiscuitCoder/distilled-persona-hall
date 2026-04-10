@@ -7,9 +7,11 @@ import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { useSettings } from '@/hooks/use-settings'
+import { ApiKeyConfigHint } from '@/components/api-key-config-hint'
 import { ChatMessageBubble } from '@/components/chat-message-bubble'
 import { MarkdownMessage } from '@/components/markdown-message'
 import { consumeSSEStream } from '@/lib/read-sse'
+import { isLikelyApiCredentialsError } from '@/lib/api-credentials-error'
 import { personagesConfig } from '@/personages.config'
 import type { PersonageConfig, RoundtableEntry } from '@/types'
 
@@ -24,6 +26,7 @@ export function RoundtableView() {
   const [round, setRound] = useState(0)
   const [started, setStarted] = useState(false)
   const [userNote, setUserNote] = useState('')
+  const [showApiConfigHint, setShowApiConfigHint] = useState(false)
   const { settings, loaded } = useSettings()
   const bottomRef = useRef<HTMLDivElement>(null)
 
@@ -83,6 +86,7 @@ export function RoundtableView() {
             /* keep */
           }
         }
+        setShowApiConfigHint(isLikelyApiCredentialsError(errMsg, res.status))
         roundHistory[roundHistory.length - 1].content = `错误：${errMsg}`
         setHistory([...roundHistory])
         setStreaming(false)
@@ -98,6 +102,7 @@ export function RoundtableView() {
       })
 
       if (!result.ok) {
+        setShowApiConfigHint(isLikelyApiCredentialsError(result.error))
         roundHistory[lastIdx] = {
           ...roundHistory[lastIdx],
           content: `错误：${result.error}`,
@@ -108,12 +113,14 @@ export function RoundtableView() {
       }
     }
 
+    setShowApiConfigHint(false)
     setHistory(roundHistory)
     setStreaming(false)
   }
 
   const handleStart = async () => {
     if (selected.length < 2 || !topic.trim() || !loaded) return
+    setShowApiConfigHint(false)
     setStarted(true)
     setHistory([])
     setRound(1)
@@ -130,6 +137,7 @@ export function RoundtableView() {
     setHistory([])
     setRound(0)
     setUserNote('')
+    setShowApiConfigHint(false)
   }
 
   if (!started) {
@@ -276,6 +284,7 @@ export function RoundtableView() {
         </div>
       </ScrollArea>
       <div className="mx-auto w-full max-w-3xl shrink-0 space-y-3 bg-background/95 p-4 backdrop-blur-sm">
+        <ApiKeyConfigHint show={showApiConfigHint} />
         <div className="flex gap-2 items-center">
           <Input
             placeholder="一轮结束后，可补充你的观点（可选）"

@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Settings } from 'lucide-react'
+import { OPEN_SETTINGS_EVENT } from '@/lib/open-settings'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -34,6 +35,12 @@ export function SettingsModal() {
     updateSettings(draft)
     setOpen(false)
   }
+
+  useEffect(() => {
+    const onOpen = () => setOpen(true)
+    window.addEventListener(OPEN_SETTINGS_EVENT, onOpen)
+    return () => window.removeEventListener(OPEN_SETTINGS_EVENT, onOpen)
+  }, [])
 
   return (
     <Dialog open={open} onOpenChange={handleOpen}>
