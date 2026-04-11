@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Noto_Serif_SC } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { Toaster } from '@/components/ui/toaster'
 import './globals.css'
 
 /** 用于 OG / Twitter 等需要绝对地址的 meta；本地为 localhost，线上优先自定义域名 */
@@ -66,6 +67,7 @@ export default function RootLayout({
     <html lang="zh-CN">
       <body className={`${notoSerif.variable} font-sans antialiased`}>
         {children}
+        <Toaster />
         <Analytics />
       </body>
     </html>
