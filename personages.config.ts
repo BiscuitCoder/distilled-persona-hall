@@ -84,4 +84,13 @@ export const personagesConfig: PersonageConfig[] = [
     avatar: '/avatars/paul-graham.png',
     tags: ['商业', '科技'],
   },
+  {
+    slug: 'spongebob',
+    dir: 'spongebob-skill',
+    name: '海绵宝宝（SpongeBob SquarePants）',
+    description: '比基尼堡蟹堡王首席炸蟹堡厨师，全宇宙最乐观的海绵生物',
+    avatar: '/avatars/spongebob.png',
+    tags: ['动漫', '娱乐'],
+    born: '1999-05-01',
+  },
 ]
