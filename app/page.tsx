@@ -71,7 +71,7 @@ export default function Home() {
 
       <main className="container mx-auto max-w-[1200px] px-4 sm:px-6 py-10 sm:py-14 flex-1">
         <div className="mb-10 space-y-3">
-          <h2 className="text-[1.6rem] font-semibold leading-[1.2] tracking-normal">
+          <h2 className="md:text-[1.6rem] font-semibold leading-[1.2] tracking-normal">
             或许，我们已经迎来了另一种存在 ~
           </h2>
         </div>
