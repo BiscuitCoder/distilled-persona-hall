@@ -6,7 +6,7 @@ import { RoundtableView } from '@/components/roundtable-view'
 
 export default function RoundtablePage() {
   return (
-    <div className="flex flex-col h-dvh min-h-0">
+    <div className="animate-in fade-in duration-500 flex flex-col h-dvh min-h-0">
       <header className="flex shrink-0 items-center gap-3 border-b border-border bg-background/90 px-4 backdrop-blur-md supports-[backdrop-filter]:bg-background/75 h-14">
         <Button variant="ghost" size="icon" asChild>
           <Link href="/">

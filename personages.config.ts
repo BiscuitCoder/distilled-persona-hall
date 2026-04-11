@@ -48,6 +48,15 @@ export const personagesConfig: PersonageConfig[] = [
     born: '1983-04',
   },
   {
+    slug: 'luoyonghao',
+    dir: 'luoyonghao-skill',
+    name: '罗永浩（Luo Yonghao）',
+    description: '锤子科技创始人，前新东方教师，"交个朋友"创始人；"真还传"主角',
+    avatar: '/avatars/luoyonghao.png',
+    tags: ['商业', '科技'],
+    born: '1972',
+  },
+  {
     slug: 'zhangxuefeng',
     dir: 'zhangxuefeng-skill',
     name: '张雪峰',

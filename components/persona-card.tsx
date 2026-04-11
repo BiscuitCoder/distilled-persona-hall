@@ -13,7 +13,7 @@ export function PersonaCard({ persona }: PersonaCardProps) {
   const chatHref = `/chat/${persona.slug}`
 
   return (
-    <Card className="group h-full overflow-hidden p-3 transition-shadow hover:shadow-[var(--shadow-whisper)] md:p-4">
+    <Card className="animate-in fade-in duration-500 group h-full overflow-hidden p-3 transition-shadow hover:shadow-[var(--shadow-whisper)] md:p-4">
       <CardContent className="flex flex-col gap-2 p-0 md:gap-3">
         <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-muted">
           <MemorialPersonageAvatar
@@ -22,7 +22,7 @@ export function PersonaCard({ persona }: PersonaCardProps) {
             born={persona.born}
             died={persona.died}
             className="h-full w-full rounded-lg"
-            imageClassName="transition-transform duration-300 group-hover:scale-[1.02]"
+            imageClassName="transition-transform duration-300 group-hover:scale-[1.07] object-center"
             sizes="(max-width: 639px) 50vw, (max-width: 767px) 33vw, 25vw"
           />
         </div>
@@ -34,7 +34,7 @@ export function PersonaCard({ persona }: PersonaCardProps) {
               <h3 className="text-sm font-semibold leading-tight tracking-normal md:text-base">
                 {persona.name}
               </h3>
-              <p className="mt-0.5 line-clamp-2 text-[0.8125rem] leading-[1.45] text-muted-foreground md:mt-1 md:text-[0.94rem] md:leading-[1.5]">
+              <p className="mt-0.5 line-clamp-2 text-[0.75rem] leading-[1.45] text-muted-foreground md:mt-1 md:text-[0.8125rem] md:leading-[1.5]">
                 {persona.description}
               </p>
             </div>

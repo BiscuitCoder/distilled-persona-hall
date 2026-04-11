@@ -33,7 +33,7 @@ export default function Home() {
   }, [list, selectedTags])
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="animate-in fade-in duration-500 min-h-screen flex flex-col">
       <header className="sticky top-0 z-10 border-b border-border bg-background/90 backdrop-blur-md supports-[backdrop-filter]:bg-background/75">
         <div className="container mx-auto max-w-[1200px] px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
           <Link
