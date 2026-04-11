@@ -66,6 +66,7 @@ export function RoundtableView() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           slug: persona.slug,
+          personaName: persona.name,
           topic,
           history: roundHistory.slice(0, -1),
           apiKey: settings.apiKey,
