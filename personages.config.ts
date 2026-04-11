@@ -2,14 +2,6 @@ import type { PersonageConfig } from '@/types'
 
 export const personagesConfig: PersonageConfig[] = [
   {
-    slug: 'paul-graham',
-    dir: 'paul-graham-skill',
-    name: 'Paul Graham（保罗·格雷厄姆）',
-    description: 'Y Combinator 联合创始人，创业孵化与科技随笔作者',
-    avatar: '/avatars/paul-graham.png',
-    tags: ['商业', '科技'],
-  },
-  {
     slug: 'steve-jobs',
     dir: 'steve-jobs-skill',
     name: 'Steve Jobs（史蒂夫·乔布斯）',
@@ -64,5 +56,23 @@ export const personagesConfig: PersonageConfig[] = [
     tags: ['教育', '商业'],
     born: '1984-05-18',
     died: '2026-03-24',
+  },
+  {
+    slug: 'laozi',
+    dir: 'laozi-skill',
+    name: '老子（Laozi）',
+    description: '道家学派创始人，《道德经》作者；春秋战国时期伟大的哲学家和思想家',
+    avatar: '/avatars/laozi.png',
+    tags: ['哲学', '文化'],
+    born: '约公元前571年',
+    died: '约公元前471年',
+  },
+  {
+    slug: 'paul-graham',
+    dir: 'paul-graham-skill',
+    name: 'Paul Graham（保罗·格雷厄姆）',
+    description: 'Y Combinator 联合创始人，创业孵化与科技随笔作者',
+    avatar: '/avatars/paul-graham.png',
+    tags: ['商业', '科技'],
   },
 ]
